@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import Form   from '../../../components/Form';
 import imcCalculator   from '../../../components/Form';
+import { calculateImc } from '../../../service/imcService';
 describe('Form component', () => {
   it('renders correctly', () => {
     const { getByText } = render(<Form />);
@@ -37,7 +38,7 @@ describe('Form component', () => {
       // Test case 1: height = 1.75, weight = 70
         const weight = 70.00;
         const height = 1.75;
-        const imc = Number((weight / (height * height)).toFixed(2))
+        const imc = calculateImc(weight, height);
 
 
       expect(imc).toBeCloseTo(22.86, 2); 

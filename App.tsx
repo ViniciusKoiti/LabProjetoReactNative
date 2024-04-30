@@ -30,13 +30,21 @@ import Main from './components/Main'
 
 function App(): React.JSX.Element {
   return (
-    <View>
+    <View style={style.container}>
         <Title/>
         <Main/>
     </View>
   );
 }
 
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#e0e5e5',
+    paddingTop:80,
+    
+  }
+});
 
 
 export default App;
