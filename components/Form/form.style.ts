@@ -9,7 +9,9 @@ const style = StyleSheet.create({
         borderTopLeftRadius:30,
         borderTopRightRadius: 30,
         marginTop: 30,
+        justifyContent: "space-around",
         alignItems: "center",
+        paddingTop:15,
     },
     
     form: {
@@ -30,6 +32,7 @@ const style = StyleSheet.create({
         borderRadius:50,
         backgroundColor: "#f6f6f6",
         height: 40,
+        color:"black",
         margin: 12,
         paddingLeft: 10,
 
@@ -49,6 +52,9 @@ const style = StyleSheet.create({
     textButtonCalculator: {
         fontSize: 20,
         color: "#ffffff",
+    },
+    textErrorMessage: {
+        color: "red",
     }
 })
 
