@@ -17,17 +17,14 @@ export default function ResultImc(props: ResultImcDTO){
     return(
         <View style={resultImc}>
             <View style={boxShareButton}>
-                {props.imcValue ? 
+            <Text style={resultImc}>{props.imcText}</Text>
+            <Text style={resultValue}>{props.imcValue}</Text>
                 <TouchableOpacity onPress={onShare} style={buttonShare}>
                     <Text style={textShare}>Share your result</Text>
                 </TouchableOpacity>
-                :
-                 <View></View> 
-                }
+            
             </View>
-            <Text style={resultImc}>{props.imcText}</Text>
-            <Text style={resultValue}>{props.imcValue}</Text>
-            <Text style={resultValue}>80</Text>
+         
         </View>
     )
 }

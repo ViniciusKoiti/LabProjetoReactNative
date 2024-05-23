@@ -5,7 +5,12 @@ import { calculateImc } from "../../service/imcService";
 import style from "./form.style";
 
 export default function Form(){
-    const {formContext,form, formLabel, input, buttonCalculator, textButtonCalculator, textErrorMessage } = style;
+    const {formContext,form,
+        formLabel, input, 
+        buttonCalculator, 
+        textButtonCalculator, textErrorMessage,
+        exhibitResultImc 
+    } = style;
     
     const [height, setHeight] = useState<number | null>(null);
     const [weight, setWeight] = useState<number | null>(null);
@@ -47,8 +52,10 @@ export default function Form(){
     }
 
     return(
-        <Pressable onPress={Keyboard.dismiss} style={formContext }>
-            <View style={form}>
+        <View style={formContext}>
+            {imc === 0 ? 
+        <Pressable onPress={Keyboard.dismiss} style={form }>
+         
                 <Text 
                 style={formLabel}>
                     Altura</Text>
@@ -82,9 +89,15 @@ export default function Form(){
                 ><Text style={textButtonCalculator}>
                     {textButton}
                     </Text></TouchableOpacity>
+                    </Pressable>
                 
+            : 
+            <View style={exhibitResultImc}>
+                 <ResultImc imcText={messageImc} imcValue={imc} />
             </View>
-            <ResultImc imcText={messageImc} imcValue={imc} />
-        </Pressable>
+           
+            }
+        
+        </View>
     );
 }

@@ -9,7 +9,6 @@ const style = StyleSheet.create({
         borderTopLeftRadius:30,
         borderTopRightRadius: 30,
         marginTop: 30,
-        justifyContent: "space-around",
         alignItems: "center",
         paddingTop:15,
     },
@@ -55,6 +54,10 @@ const style = StyleSheet.create({
     },
     textErrorMessage: {
         color: "red",
+    },
+    exhibitResultImc: {
+        width: "100%",
+        height: "50%",
     }
 })
 
