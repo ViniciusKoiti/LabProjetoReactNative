@@ -41,11 +41,8 @@ const style = StyleSheet.create({
         alignItems: "center", 
         justifyContent: "center", 
         width: "90%",
-        backgroundColor: "#FF0043",
+        backgroundColor: "#1B264F",
         padding: 14,
-        paddingBottom: 14, 
-        marginLeft: 12,
-        margin: 30
     },
 
     textButtonCalculator: {

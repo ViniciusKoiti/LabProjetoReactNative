@@ -20,7 +20,7 @@ export default function ResultImc(props: ResultImcDTO){
             <Text style={resultImc}>{props.imcText}</Text>
             <Text style={resultValue}>{props.imcValue}</Text>
                 <TouchableOpacity onPress={onShare} style={buttonShare}>
-                    <Text style={textShare}>Share your result</Text>
+                    <Text style={textShare}>Compartilhe</Text>
                 </TouchableOpacity>
             
             </View>

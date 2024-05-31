@@ -3,15 +3,18 @@ import { View, Text, TextInput, TouchableOpacity, Vibration, Pressable, Keyboard
 import ResultImc from "../ResultIMC";
 import { calculateImc } from "../../service/imcService";
 import style from "./form.style";
+import List, { ListProps } from "../List";
 
-export default function Form(){
-    const {formContext,form,
-        formLabel, input, 
-        buttonCalculator, 
+export default function Form() {
+
+    const { formContext, form,
+        formLabel, input,
+        buttonCalculator,
         textButtonCalculator, textErrorMessage,
-        exhibitResultImc 
+        exhibitResultImc
     } = style;
-    
+
+    const [imcList, setImcList] = useState<ListProps>({ listArrayNumber: [] });
     const [height, setHeight] = useState<number | null>(null);
     const [weight, setWeight] = useState<number | null>(null);
     const [messageImc, setMessageImc] = useState("Preenchao Peso e a altura");
@@ -20,13 +23,28 @@ export default function Form(){
     const [errorMessageHeight, setErrorMessageHeight] = useState<String | null>(null);
     const [errorMessageWeight, setErrorMessageWeight] = useState<String | null>(null);
 
-    function imcCalculator(): void{
-        height && weight ? setImc(calculateImc(weight, height)) :  setMessageImc("Preencha o peso e altura");
+    function imcCalculator(): void {
+        height && weight ? setImc(calculateImc(weight, height)) : setMessageImc("Preencha o peso e altura");
     }
 
-    function validationImc(): void{
-        if(height && weight){
-            console.log(height)
+    const addImcValue = (newValue: number) => {
+        setImcList((prevList: ListProps) => ({
+          listArrayNumber: [...prevList.listArrayNumber, { number: newValue }],
+        }));
+      };
+
+    function validationImc(): void {
+        console.log(imc);
+        if (imc) {
+            addImcValue(imc);
+            setImc(0);
+            setHeight(0);
+            setWeight(0);
+            return;
+        }
+
+
+        if (height && weight) {
             imcCalculator();
             setMessageImc("Seu imc é igual:");
             setTextButton("Calcular novamente");
@@ -34,12 +52,12 @@ export default function Form(){
             setErrorMessageWeight(null);
             return;
         }
-        setImc(0);
-        if(!height){
+
+        if (!height) {
             setErrorMessageHeight("Preciso que informe sua altura!");
             return;
         }
-        if(!weight){
+        if (!weight) {
             setErrorMessageWeight("Preciso que informe seu peso!");
             return;
         }
@@ -48,56 +66,60 @@ export default function Form(){
         setTextButton("Calcular");
         setMessageImc("Preencha o peso e altura");
 
-       
+
     }
 
-    return(
+    return (
         <View style={formContext}>
-            {imc === 0 ? 
-        <Pressable onPress={Keyboard.dismiss} style={form }>
-         
-                <Text 
-                style={formLabel}>
-                    Altura</Text>
+            {imc === 0 ?
+                <Pressable onPress={Keyboard.dismiss} style={form}>
+
+                    <Text
+                        style={formLabel}>
+                        Altura</Text>
                     <Text style={textErrorMessage}>
                         {errorMessageHeight}
                     </Text>
-                <TextInput
-                style={input}
-                onChangeText={(height:string) => setHeight(height ? parseFloat(height.replace(/,/g, '.')) : null)}
-                placeholder="1.75"
-                
-                keyboardType="numeric" 
-                ></TextInput>
-                <Text
-                 style={formLabel}
-                >Peso</Text>
-         
+                    <TextInput
+                        style={input}
+                        onChangeText={(height: string) => setHeight(height ? parseFloat(height.replace(/,/g, '.')) : null)}
+                        placeholder="1.75"
+
+                        keyboardType="numeric"
+                    ></TextInput>
+                    <Text
+                        style={formLabel}
+                    >Peso</Text>
+
                     <Text style={textErrorMessage}>
                         {errorMessageWeight}
                     </Text>
-                <TextInput
-                style={input}
-                onChangeText={(peso) => setWeight(peso ? parseFloat(peso) : null)}
-                placeholder = "75.00"
-                keyboardType="numeric"
-                ></TextInput>
+                    <TextInput
+                        style={input}
+                        onChangeText={(peso) => setWeight(peso ? parseFloat(peso) : null)}
+                        placeholder="75.00"
+                        keyboardType="numeric"
+                    ></TextInput>
 
-                <TouchableOpacity 
+
+                </Pressable>
+
+                :
+                <View style={exhibitResultImc}>
+                    <ResultImc imcText={messageImc} imcValue={imc} />
+                </View>
+
+            }
+
+            <TouchableOpacity
                 onPress={validationImc}
                 style={buttonCalculator}
-                ><Text style={textButtonCalculator}>
+            ><Text style={textButtonCalculator}>
                     {textButton}
-                    </Text></TouchableOpacity>
-                    </Pressable>
+                </Text></TouchableOpacity>
+            <List listArrayNumber={imcList.listArrayNumber}>
                 
-            : 
-            <View style={exhibitResultImc}>
-                 <ResultImc imcText={messageImc} imcValue={imc} />
-            </View>
-           
-            }
-        
+            </List>
         </View>
     );
 }
