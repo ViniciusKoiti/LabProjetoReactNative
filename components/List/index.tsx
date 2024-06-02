@@ -1,24 +1,37 @@
 import { FlatList, Text, View } from "react-native";
 import ItemList from "../ItemList";
+import style from "./list.style";
 
 interface ListItem {
     number: number;
   }
 
 export interface ListProps {
-    listArrayNumber: ListItem[]
+    listArrayNumber: ListItem[],
+    title: string,
 }
 
-export default function List(listArrayNumber: ListProps) {
+export default function List(props: ListProps) {
+
+    console.log(props)
+
+    const {heightView, listContainer, listTitleContainer,titleContainer} = style
 
 
     return (
-        <View>
+        <View style={listContainer}>
+            <View style={listTitleContainer}>
+                <Text style={titleContainer}>{props.title}</Text>
+            </View>
+            <View  style={heightView} >
             <FlatList
-                data={listArrayNumber.listArrayNumber}
+            
+                data={props.listArrayNumber}
                 keyExtractor={(item,index) => index.toString()}
                 renderItem={({ item }) => <ItemList number={item.number} />}
             />
+            </View>
+            
         </View>
     );
 }

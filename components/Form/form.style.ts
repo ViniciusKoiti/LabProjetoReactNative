@@ -55,6 +55,15 @@ const style = StyleSheet.create({
     exhibitResultImc: {
         width: "100%",
         height: "50%",
+    },
+    listEspace: {
+        minHeight: '20%',
+        maxHeight: '30%',
+        width: '90%',
+        backgroundColor: '#274690',
+        borderRadius: 30,
+        padding: 30,
+        margin: 15
     }
 })
 

@@ -11,10 +11,11 @@ export default function Form() {
         formLabel, input,
         buttonCalculator,
         textButtonCalculator, textErrorMessage,
-        exhibitResultImc
+        exhibitResultImc,
+        listEspace
     } = style;
 
-    const [imcList, setImcList] = useState<ListProps>({ listArrayNumber: [] });
+    const [imcList, setImcList] = useState<ListProps>({ listArrayNumber: [], title: '' });
     const [height, setHeight] = useState<number | null>(null);
     const [weight, setWeight] = useState<number | null>(null);
     const [messageImc, setMessageImc] = useState("Preenchao Peso e a altura");
@@ -29,9 +30,9 @@ export default function Form() {
 
     const addImcValue = (newValue: number) => {
         setImcList((prevList: ListProps) => ({
-          listArrayNumber: [...prevList.listArrayNumber, { number: newValue }],
+            listArrayNumber: [...prevList.listArrayNumber, { number: newValue }], title: "IMC"
         }));
-      };
+    };
 
     function validationImc(): void {
         console.log(imc);
@@ -117,9 +118,13 @@ export default function Form() {
             ><Text style={textButtonCalculator}>
                     {textButton}
                 </Text></TouchableOpacity>
-            <List listArrayNumber={imcList.listArrayNumber}>
-                
-            </List>
+
+            <View style={listEspace}>
+                <List listArrayNumber={imcList.listArrayNumber} title='IMC'/>
+            </View>
+
+
+
         </View>
     );
 }
