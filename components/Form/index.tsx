@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, Vibration, Pressable, Keyboard
 import ResultImc from "../ResultIMC";
 import { calculateImc } from "../../service/imcService";
 import style from "./form.style";
-import List, { ListProps } from "../List";
+import List, { ListItem, ListProps } from "../List";
 
 export default function Form() {
 
@@ -15,7 +15,7 @@ export default function Form() {
         listEspace
     } = style;
 
-    const [imcList, setImcList] = useState<ListProps>({ listArrayNumber: [], title: '' });
+    const [imcList, setImcList] = useState<ListItem[]>([]);
     const [height, setHeight] = useState<number | null>(null);
     const [weight, setWeight] = useState<number | null>(null);
     const [messageImc, setMessageImc] = useState("Preenchao Peso e a altura");
@@ -29,13 +29,12 @@ export default function Form() {
     }
 
     const addImcValue = (newValue: number) => {
-        setImcList((prevList: ListProps) => ({
-            listArrayNumber: [...prevList.listArrayNumber, { number: newValue }], title: "IMC"
-        }));
+        setImcList((prevList: ListItem[]) => (
+            [...prevList, { number: newValue }]
+        ));
     };
 
     function validationImc(): void {
-        console.log(imc);
         if (imc) {
             addImcValue(imc);
             setImc(0);
@@ -120,7 +119,7 @@ export default function Form() {
                 </Text></TouchableOpacity>
 
             <View style={listEspace}>
-                <List listArrayNumber={imcList.listArrayNumber} title='IMC'/>
+                <List listArrayNumber={imcList} title='IMC' />
             </View>
 
 

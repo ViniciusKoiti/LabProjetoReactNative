@@ -3,9 +3,10 @@ import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
 
     heightView: {
-        color: '#274690',
-        maxHeight: 30,
-        overflow: 'visible',
+        marginTop: 10,
+        color: '#1b1e29',
+        maxHeight: 75,
+        borderRadius: 20,
     },
     listContainer:{
         display: 'flex',

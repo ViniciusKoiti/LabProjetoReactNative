@@ -6,9 +6,10 @@ const style = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 20
     },
     titleStyle: {
-        color: '#ffffff',
+        color: '#1b1e29',
         backgroundColor: "#8D92A7",
         width: '100%',
 

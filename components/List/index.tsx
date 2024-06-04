@@ -2,7 +2,7 @@ import { FlatList, Text, View } from "react-native";
 import ItemList from "../ItemList";
 import style from "./list.style";
 
-interface ListItem {
+export interface ListItem {
     number: number;
   }
 

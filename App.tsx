@@ -14,6 +14,8 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
+  Pressable,
+  Keyboard,
   View,
 } from 'react-native';
 
